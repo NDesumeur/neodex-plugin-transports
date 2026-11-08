@@ -1,9 +1,9 @@
 {
   "pluginId": "neodex.transports",
   "repo": "NDesumeur/neodex-plugin-transports",
-  "version": "1.2.1",
-  "sha256": "4081198808a1ed7a2d585ac25a769f184b6c0f00d79c3f558125a99edc3eb86a",
-  "approvedAt": "2026-11-06T21:35:48.032Z",
+  "version": "1.2.2",
+  "sha256": "a30b8bfaa385fc2bd63b267b952be294279216ccaa333623dc405c4dc779f76b",
+  "approvedAt": "2026-11-08T12:10:50.716Z",
   "neobase": ">=4.1.0",
-  "signature": "rdy0yqH/ZfExBSRekQjJxGJ1VNcM4OubzYBI4QrJpiHsQ6ptJfWmCsCebXzrhUTcKPSgSDgDOIT9yTHkkyv7DQ=="
+  "signature": "l97szNuS/Bn9RGsuQTsDvN9yH66nfvVlxJsPQdW7DOzy2DD8jVXop1RMkaguJfLwDysFqQc3qWNHCk3i8ckJBA=="
 }

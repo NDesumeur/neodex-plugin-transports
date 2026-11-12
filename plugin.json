@@ -1,7 +1,7 @@
 {
   "id": "neodex.transports",
   "name": "Transports",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "author": "NDesumeur",
   "description": "Les prochains passages des bus Tadao (Lens, Liévin, Hénin-Beaumont, Carvin) sur les 3 prochaines heures : recherche d'arrêt qui tolère les fautes, bus suivis en direct avec le nombre d'arrêts restants et le retard estimé, détail des arrêts de chaque trajet, mise à jour toutes les 30 secondes et arrêts favoris synchronisés. Données ouvertes de transport.data.gouv.fr.",
   "icon": "icon.png",
@@ -13,6 +13,11 @@
   "syncMode": "fusion",
   "syncInfo": "Arrêts favoris.",
   "mobile": true,
+  "compatibility": [
+    "windows",
+    "android",
+    "linux"
+  ],
   "system": false,
   "dependencies": {},
   "main": "main.js",

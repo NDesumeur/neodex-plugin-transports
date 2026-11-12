@@ -22,7 +22,7 @@ async function loadGtfs() {
     fs.mkdirSync(dir, { recursive: true });
     const r = await fetch(TADAO_GTFS); if (!r.ok) throw new Error('horaires Tadao indisponibles (' + r.status + ')');
     const zip = path.join(dir, 'gtfs.zip'); fs.writeFileSync(zip, Buffer.from(await r.arrayBuffer()));
-    await new Promise((ok, ko) => execFile(path.join(process.env.SystemRoot || 'C:\\Windows', 'System32', 'tar.exe'), ['-xf', zip, '-C', dir, ...GTFS_FILES], { windowsHide: true }, e => e ? ko(new Error('archive Tadao illisible')) : ok()));
+    await new Promise((ok, ko) => execFile(process.platform === 'win32' ? path.join(process.env.SystemRoot || 'C:\\Windows', 'System32', 'tar.exe') : 'tar', ['-xf', zip, '-C', dir, ...GTFS_FILES], { windowsHide: true }, e => e ? ko(new Error('archive Tadao illisible')) : ok()));
     fs.rmSync(zip, { force: true });
     for (const f of GTFS_FILES) try { fs.utimesSync(path.join(dir, f), new Date(), new Date()); } catch {}
   }

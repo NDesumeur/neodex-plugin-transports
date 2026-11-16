@@ -53,5 +53,12 @@
  "À… (ex : Gare de Lens)": "To… (e.g. Gare de Lens)",
  "Choisis l’arrêt d’arrivée dans la liste": "Pick the arrival stop in the list",
  "Choisis l’arrêt de départ dans la liste": "Pick the departure stop in the list",
- "Recherche des bus…": "Looking for buses…"
+ "Recherche des bus…": "Looking for buses…",
+ "Le bus (position estimée d’après le direct)": "The bus (position estimated from live data)",
+ "Le bus (position estimée d’après l’horaire)": "The bus (position estimated from the timetable)",
+ "Aucun bus de": "No bus from",
+ "dans les 3 prochaines heures (même avec une correspondance).": "in the next 3 hours (even with a change).",
+ "puis, à": "then, at",
+ "· 1 correspondance": "· 1 change",
+ "Itinéraire indisponible :": "Route unavailable:"
 }

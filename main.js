@@ -118,7 +118,36 @@ function tadaoRank(stops, q) {
   return scored.sort((a, b) => a[0] - b[0] || a[1].name.localeCompare(b[1].name, 'fr')).map(x => x[1]);
 }
 
+// itinéraire d'un arrêt à un autre, d'après les horaires : les bus directs, et des trajets avec une correspondance (2 min au moins pour changer de bus)
+function routeSearch(g, fromKey, toKey, at = Date.now(), max = 6) {
+  const A = g.groups.get(fromKey), B = g.groups.get(toKey); if (!A || !B) throw new Error('arrêt inconnu');
+  const now = new Date(at), nowS = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds(), yesterday = new Date(now); yesterday.setDate(now.getDate() - 1);
+  const boards = (ids, after, until) => {  // les bus qui partent de ces quais entre deux moments (en secondes depuis minuit)
+    const out = [];
+    for (const id of ids) for (const [tripId, t, seq] of g.byStop.get(id) || []) {
+      const trip = g.trips.get(tripId); if (!trip) continue;
+      for (const [day, shift] of [[now, 0], [yesterday, 86400]]) { const s = t - shift; if (s >= after && s <= until && running(g, trip.service, day)) out.push({ tripId, shift, seq, t: s, id }); }
+    }
+    return out.sort((a, b) => a.t - b.t);
+  };
+  const leg = (b, off) => { const trip = g.trips.get(b.tripId); return { route: g.routes.get(trip.route), headsign: trip.headsign, trip: b.tripId, shift: b.shift, from: g.stops.get(b.id)?.name || '', dep: b.t, to: g.stops.get(off[1])?.name || '', arr: off[2] - b.shift }; };
+  const inB = new Set(B.ids), res = [], dep = boards(A.ids, nowS - 60, nowS + 3 * 3600), offAt = (b, set) => g.byTrip.get(b.tripId)?.find(s => s[0] > b.seq && set.has(s[1]));
+  for (const b of dep) { const off = offAt(b, inB); if (off) res.push([leg(b, off)]); }
+  for (const b of dep.slice(0, 25)) {  // avec une correspondance : on descend à un arrêt de la ligne, on reprend un autre bus dans l'heure
+    for (const s of g.byTrip.get(b.tripId) || []) {
+      if (s[0] <= b.seq) continue; const grp = g.groups.get(g.stops.get(s[1])?.key); if (!grp || grp === A || grp === B) continue;
+      const arr = s[2] - b.shift;
+      for (const b2 of boards(grp.ids, arr + 120, arr + 3600)) { if (b2.tripId === b.tripId) continue; const off = offAt(b2, inB); if (off) { res.push([leg(b, s), leg(b2, off)]); break; } }
+    }
+  }
+  // on garde les meilleurs : par heure d'arrivée, et pas un trajet qui part plus tôt pour arriver plus tard qu'un autre
+  const opts = res.map(legs => ({ legs, dep: legs[0].dep, arr: legs.at(-1).arr })).sort((a, b) => a.arr - b.arr || b.dep - a.dep || a.legs.length - b.legs.length), kept = [];
+  for (const o of opts) if (!kept.some(k => k.dep >= o.dep)) kept.push(o);
+  return { from: { name: A.name, town: A.town }, to: { name: B.name, town: B.town }, now: nowS, options: kept.slice(0, max) };
+}
+
 module.exports = ({ ipcMain }) => {
+  ipcMain.handle('tadao:route', async (_, a, b, at) => routeSearch(await getGtfs(), a, b, typeof at === 'number' ? at : Date.now()));
   ipcMain.handle('tadao:search', async (_, q) => {
     const g = await getGtfs();
     return tadaoRank([...g.groups.values()], q).slice(0, 20).map(s => ({ key: s.key, name: s.name, town: s.town, quays: s.ids.length }));
@@ -127,3 +156,4 @@ module.exports = ({ ipcMain }) => {
   ipcMain.handle('tadao:next', (_, key, at) => departures(key, 30, typeof at === 'number' ? at : Date.now()));
 };
 module.exports.tadaoRank = tadaoRank;
+module.exports.routeSearch = routeSearch;

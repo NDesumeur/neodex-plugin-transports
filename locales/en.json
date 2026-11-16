@@ -16,7 +16,6 @@
  "Horaires indisponibles :": "Times unavailable:",
  "Hôtel de Ville": "Town Hall",
  "Hôtel de Ville|Hénin-Beaumont": "Town Hall|Hénin-Beaumont",
- "Les prochains passages des bus Tadao (Lens, Liévin, Hénin-Beaumont, Carvin) sur les 3 prochaines heures : recherche d'arrêt qui tolère les fautes, bus suivis en direct avec le nombre d'arrêts restants et le retard estimé, détail des arrêts de chaque trajet, mise à jour toutes les 30 secondes et arrêts favoris synchronisés. Données ouvertes de transport.data.gouv.fr.": "The next Tadao buses (Lens, Liévin, Hénin-Beaumont, Carvin) over the next 3 hours: stop search that tolerates typos, buses tracked live with the stops left and the estimated delay, the stops of each trip, updates every 30 seconds and synced favourite stops. Open data from transport.data.gouv.fr.",
  "Médiathèque": "Media library",
  "Médiathèque|Lens": "Media library|Lens",
  "NFD": "NFD",
@@ -46,5 +45,13 @@
  "échec(s)": "chess)",
  "● en circulation": "● in circulation",
  "mediatheque (sans accent)": "media library (no accent)",
- "stade lagrange (mot manquant au milieu)": "lagrange stage (word missing in the middle)"
+ "stade lagrange (mot manquant au milieu)": "lagrange stage (word missing in the middle)",
+ "Les prochains passages des bus Tadao (Lens, Liévin, Hénin-Beaumont, Carvin) sur les 3 prochaines heures : recherche d'arrêt qui tolère les fautes, bus suivis en direct avec le nombre d'arrêts restants et le retard estimé, détail des arrêts de chaque trajet, mise à jour toutes les 30 secondes et arrêts favoris synchronisés. Données ouvertes de transport.data.gouv.fr. Itinéraire d'un arrêt à un autre : quel bus prendre, direct ou avec une correspondance, d'après les horaires ; un clic sur un passage montre le plan de la ligne avec le bus qui avance ; textes plus grands et largeur selon l'écran.": "The next Tadao buses (Lens, Liévin, Hénin-Beaumont, Carvin) over the next 3 hours: stop search that tolerates typos, buses tracked live with the stops left and the estimated delay, the stops of each trip, updates every 30 seconds and synced favourite stops. Open data from transport.data.gouv.fr. Route from one stop to another: which bus to take, direct or with one change, from the timetables; a click on a departure shows the line map with the bus moving along; bigger text and width that follows the screen.",
+ "Itinéraire · quel bus prendre": "Route · which bus to take",
+ "QUEL BUS ?": "WHICH BUS?",
+ "De… (l’arrêt affiché si vide)": "From… (the shown stop if empty)",
+ "À… (ex : Gare de Lens)": "To… (e.g. Gare de Lens)",
+ "Choisis l’arrêt d’arrivée dans la liste": "Pick the arrival stop in the list",
+ "Choisis l’arrêt de départ dans la liste": "Pick the departure stop in the list",
+ "Recherche des bus…": "Looking for buses…"
 }

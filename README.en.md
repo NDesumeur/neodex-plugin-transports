@@ -4,6 +4,10 @@ The next departures of **every transit network in France** at the stop of your c
 
 *Version française : [README.md](README.md)*
 
+## Time to leave (new in 2.1.0)
+
+The ⏰ button on a departure: a notification when it is time to leave, based on the real time (delays included) and your walk to the stop, once or every day. If the departure is canceled, the notification gives the next one.
+
 ## Pick your networks
 
 - **+ Choose my network** (or **+ Network**) opens the transport.data.gouv.fr catalogue: more than 450 networks. Search a town, a region, a network or an operator ("Lille", "Hauts-de-France", "TER", "Tadao"…).
@@ -45,3 +49,11 @@ Your networks and favourite stops are saved by NeoDex, backed up and synced betw
 In NeoDex: **NeoStore → Discover → Transports → Install**.
 
 Building a plugin: see the [NeoDex SDK](https://github.com/NDesumeur/neodex-sdk).
+
+## Time to leave (2.1.0)
+
+The **⏰** button on a departure sets an alert: you say how many minutes you need to walk to the stop and whether it is **once**, **Monday to Friday** or **every day**.
+
+- Transports watches the real departure time (delays included), even with the tab closed, and sends “Time to leave: B1 → Liévin · Departure at Médiathèque at 08:22 (in 6 min, 2 min late) · 5 min walk” at the right moment, once a day.
+- If the departure is canceled, the notification says so and gives the next one.
+- The alerts are listed at the top of the tab, each with a cross to delete it. They stay on this device.

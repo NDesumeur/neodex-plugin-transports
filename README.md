@@ -4,6 +4,10 @@ Les prochains passages de **tous les réseaux de France** à l'arrêt de ton cho
 
 *English version: [README.en.md](README.en.md)*
 
+## Il faut partir (nouveau en 2.1.0)
+
+Le bouton ⏰ sur un passage : une notification quand il est temps de partir, d’après l’heure réelle (retards compris) et ta marche jusqu’à l’arrêt, une fois ou chaque jour. Si le passage est supprimé, la notification donne le suivant.
+
 ## Choisir ses réseaux
 
 - **+ Choisir mon réseau** (ou **+ Réseau**) ouvre le catalogue de transport.data.gouv.fr : plus de 450 réseaux. Cherche une ville, une région, un réseau ou un exploitant (« Lille », « Hauts-de-France », « TER », « Tadao »…).
@@ -45,3 +49,11 @@ Tes réseaux et tes arrêts favoris sont enregistrés par NeoDex, sauvegardés e
 Dans NeoDex : **NeoStore → À découvrir → Transports → Installer**.
 
 Développer un plugin : voir le [SDK NeoDex](https://github.com/NDesumeur/neodex-sdk).
+
+## Il faut partir (2.1.0)
+
+Le bouton **⏰** sur un passage pose une alerte : tu dis combien de minutes il te faut pour marcher jusqu’à l’arrêt et si c’est **une fois**, **du lundi au vendredi** ou **tous les jours**.
+
+- Transports regarde l’heure réelle du passage (retards compris), même onglet fermé, et envoie « Il faut partir : B1 → Liévin · Passage à Médiathèque à 08:22 (dans 6 min, 2 min de retard) · 5 min à pied » au bon moment, une seule fois par jour.
+- Si le passage est supprimé, la notification le dit et donne le suivant.
+- Les alertes sont listées en haut de l’onglet, chacune avec sa croix pour la supprimer. Elles restent sur cet appareil.

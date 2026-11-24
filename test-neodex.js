@@ -20,6 +20,20 @@ module.exports = async ({ pj, sleep }) => {
   if (!r.bus || !r.between || r.past !== 3) throw new Error('plan de la ligne : ' + JSON.stringify(r));
   if (r.info !== "supprimé|● en circulation · retard 4 min|horaire prévu 08:20 · retard estimé 6 min") throw new Error('passages : ' + r.info);
   if (r.over) throw new Error(r.over + ' élément(s) débordent à droite');
+  // « il faut partir » : le réveil d'un passage (5 min à pied, du lundi au vendredi), la liste des alertes, puis la tâche de fond avec un passage dans 5 min
+  const lv = await pj(`(async () => {
+    const T = document.querySelector('.appWrap').parentElement.__tp, now = new Date(), nowS = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+    const s = { key: 'essai~quai', name: 'Médiathèque' }, d = { trip: 'x1', route: { name: 'B1', color: '#e6007e', text: '#fff' }, headsign: 'Liévin', time: nowS + 300, delay: 0 };
+    const f = T.leaveForm(s, d); document.getElementById('tpRoute').append(f);
+    f.querySelector('input').value = 5; f.querySelector('select').value = 'daily'; f.querySelector('button').click();
+    await new Promise(r => setTimeout(r, 400));
+    const list = T.leaves(), card = document.getElementById('tpLeave'), sent = [];
+    const n = await T.leaveTick(async () => ({ now: nowS, departures: [d] }), m => sent.push(m));
+    const again = await T.leaveTick(async () => ({ now: nowS, departures: [d] }), m => sent.push(m));
+    const out = { n: list.length, walk: list[0]?.walk, rep: list[0]?.repeat, shown: !card.hidden && card.querySelectorAll('.tpLv').length, sent: n, again, title: sent[0]?.title, body: sent[0]?.body };
+    await T.leaveClear(); return out; })()`);
+  if (lv.n !== 1 || lv.walk !== 5 || lv.rep !== 'daily' || lv.shown !== 1) throw new Error('alerte « il faut partir » : ' + JSON.stringify(lv));
+  if (lv.sent !== 1 || lv.again !== 0 || lv.title !== 'Il faut partir : B1 → Liévin' || !/dans [45] min\) · 5 min à pied$/.test(lv.body)) throw new Error('notification « il faut partir » : ' + JSON.stringify(lv));
   await sleep(2500);  // le temps de la capture d'écran
-  return '2 itinéraires (dont 1 avec correspondance), plan de 6 arrêts avec le bus entre le 3e et le 4e, lignes en ' + r.line + ' px';
+  return '« il faut partir » : alerte posée (5 min à pied, tous les jours), listée, notification à l’heure et une seule fois par jour · 2 itinéraires (dont 1 avec correspondance), plan de 6 arrêts avec le bus entre le 3e et le 4e, lignes en ' + r.line + ' px';
 };

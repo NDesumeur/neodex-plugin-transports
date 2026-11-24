@@ -1,9 +1,9 @@
 {
   "id": "neodex.transports",
   "name": "Transports",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "author": "NDesumeur",
-  "description": "Les prochains passages de tous les réseaux de France : bus, tram, métro, car et train (TER, Intercités, TGV), choisis dans le catalogue national transport.data.gouv.fr, plusieurs réseaux à la fois (par exemple Tadao, Ilévia et les TER Hauts-de-France). Recherche d'arrêt qui tolère les fautes ; temps réel quand le réseau le donne : retard exact, trajets supprimés, arrêts non desservis, véhicules suivis et alertes du réseau. Une cloche sur un arrêt favori prévient d'une perturbation dans l'heure (suppression, 10 min de retard ou plus, alerte), même onglet fermé. Itinéraire d'un arrêt à un autre, direct ou avec une correspondance ; un clic sur un passage montre le plan de la ligne avec le véhicule qui avance. Arrêts favoris et réseaux synchronisés.",
+  "description": "Les prochains passages de tous les réseaux de France : bus, tram, métro, car et train (TER, Intercités, TGV), choisis dans le catalogue national transport.data.gouv.fr, plusieurs réseaux à la fois (par exemple Tadao, Ilévia et les TER Hauts-de-France). Recherche d'arrêt qui tolère les fautes ; temps réel quand le réseau le donne : retard exact, trajets supprimés, arrêts non desservis, véhicules suivis et alertes du réseau. Une cloche sur un arrêt favori prévient d'une perturbation dans l'heure (suppression, 10 min de retard ou plus, alerte), même onglet fermé. Itinéraire d'un arrêt à un autre, direct ou avec une correspondance ; un clic sur un passage montre le plan de la ligne avec le véhicule qui avance. Arrêts favoris et réseaux synchronisés. « Il faut partir » : une notification quand il est temps de quitter la maison pour un passage choisi, d’après l’heure réelle et ta marche jusqu’à l’arrêt.",
   "icon": "icon.png",
   "entry": "index.js",
   "view": "transports",
@@ -34,6 +34,11 @@
       "type": "perturbation",
       "name": "Perturbations",
       "description": "Une notification quand un passage de la prochaine heure à un arrêt à cloche est supprimé, a 10 min de retard ou plus, ou qu'une alerte du réseau le touche."
+    },
+    {
+      "type": "partir",
+      "name": "Il faut partir",
+      "description": "Une notification quand il est temps de partir pour un passage choisi (retards compris), une fois ou chaque jour."
     }
   ]
 }
